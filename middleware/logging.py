@@ -1,5 +1,6 @@
 from flask import request
 from interfaces.middleware import Middleware as BaseMiddleware
+import logging
 
 class LoggingMiddleware(BaseMiddleware):
     def log_request_response(self, app):
@@ -13,4 +14,5 @@ class LoggingMiddleware(BaseMiddleware):
             return response
 
     def register(self, app):
+        app.logger.setLevel(logging.INFO)
         self.log_request_response(app)
