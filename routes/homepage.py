@@ -1,9 +1,7 @@
-from flask import Blueprint
-import os
+from fastapi import APIRouter
 
-file_path = os.path.abspath(__file__)
-homepage_bp = Blueprint(file_path.split("/")[-1].split(".")[0], __name__)
+router = APIRouter()
 
-@homepage_bp.route("/")
-def homepage_route():
-    return "<p>Hello, World!</p>"
+@router.get("/")
+async def read_homepage():
+    return {"message": "Welcome to the homepage"}
