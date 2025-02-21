@@ -15,6 +15,7 @@ class Database:
         return cls._instance
 
     def _initialize(self):
+        # TODO: Move this to a configuration file
         SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
         self._engine = create_engine(
             SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}

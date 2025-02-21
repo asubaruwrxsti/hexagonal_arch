@@ -2,7 +2,6 @@ from fastapi import FastAPI, APIRouter
 from core.ports.incoming.router_port import RouterPort
 import os
 import importlib
-from typing import List
 
 class FastAPIRouteAdapter(RouterPort):
     def __init__(self):

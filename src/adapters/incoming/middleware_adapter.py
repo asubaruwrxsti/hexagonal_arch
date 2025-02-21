@@ -9,6 +9,7 @@ import uuid
 class FastAPIMiddlewareAdapter(MiddlewarePort):
     def register_middleware(self, app: FastAPI) -> None:
         # Configure CORS
+        # TODO: Move this to a configuration file
         app.add_middleware(
             CORSMiddleware,
             allow_origins=["*"],
@@ -34,10 +35,6 @@ class FastAPIMiddlewareAdapter(MiddlewarePort):
                 return response
             except Exception as e:
                 logging.exception("Unhandled exception occurred")
-                error_response = APIResponse.error(
+                return APIResponse.error(
                     message=str(e)
-                )
-                return JSONResponse(
-                    status_code=error_response.status_code,
-                    content=error_response.dict()
                 )
