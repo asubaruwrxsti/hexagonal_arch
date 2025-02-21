@@ -6,7 +6,12 @@ client = TestClient(app)
 def test_home_endpoint():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World"}
+    assert response.json() == {
+        "status": "success",
+        "message": "Welcome to the homepage",
+        "data": {},
+        "status_code": 200
+    }
 
 def test_home_endpoint_wrong_method():
     response = client.post("/")
