@@ -78,6 +78,33 @@ This architecture forces you to think about your domain model first and keeps yo
 The key benefit is that your business logic doesn't depend on Flask, databases, or other external systems - they become replaceable "adapters" around your core domain. This makes your services more resilient to change and easier to test.
 It has a steeper learning curve but provides more long-term benefits for complex applications, especially in a microservices context.
 
+### Current Implementation
+
+Core Components
+Core Domain (src/core/domain/)
+
+Contains business entities and logic
+Independent of external concerns
+Pure business rules and domain models
+Use Cases (src/core/use_cases/)
+
+Application-specific business rules
+Orchestrates the flow of data
+Implements business operations
+Ports (src/core/ports/)
+
+Defines interfaces for:
+Incoming (API contracts)
+Outgoing (repository/external service interfaces)
+Adapters (src/adapters/)
+
+Incoming: HTTP controllers, API endpoints
+Outgoing: Database repositories, external API clients
+Flow of Control
+The key benefit is that the business logic in the core domain remains isolated from external dependencies like FastAPI, databases, or other systems. 
+
+Tests can be found in tests and the application entry point is main.py.
+
 # Technology Stack
 
 
