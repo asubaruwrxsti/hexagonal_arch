@@ -8,16 +8,14 @@ router = APIRouter()
 
 @router.get("/")
 async def home():
-    return APIResponse(
-        status="success",
+    return APIResponse.success(
         message="Welcome to the homepage",
-        status_code=200
+        data={}
     )
 
 @router.get("/items/")
 async def read_items(db: Session = Depends(get_db)):
-    return APIResponse(
-        status="success",
+    return APIResponse.success(
         message="Items retrieved successfully",
-        status_code=200
+        data={"items": []}
     )

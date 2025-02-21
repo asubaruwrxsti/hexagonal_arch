@@ -1,0 +1,8 @@
+app: src.main:app
+host: 0.0.0.0
+port: 8000
+reload: true
+reload_dirs:
+  - src
+workers: 1
+log_level: info
