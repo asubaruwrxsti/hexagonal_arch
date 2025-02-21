@@ -100,7 +100,20 @@ Adapters (src/adapters/)
 
 Incoming: HTTP controllers, API endpoints
 Outgoing: Database repositories, external API clients
-Flow of Control
+
+#### Flow of Control
+```mermaid
+sequenceDiagram
+    Client->>Incoming Adapter: HTTP Request
+    Incoming Adapter->>Application Core: Convert to domain model
+    Application Core->>Outgoing Adapter: Request data
+    Outgoing Adapter->>External System: DB/API call
+    External System-->>Outgoing Adapter: Raw data
+    Outgoing Adapter-->>Application Core: Domain objects
+    Application Core-->>Incoming Adapter: Result
+    Incoming Adapter-->>Client: HTTP Response
+```
+
 The key benefit is that the business logic in the core domain remains isolated from external dependencies like FastAPI, databases, or other systems. 
 
 Tests can be found in tests and the application entry point is main.py.
