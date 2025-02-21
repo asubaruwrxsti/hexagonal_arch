@@ -88,6 +88,7 @@ It has a steeper learning curve but provides more long-term benefits for complex
 - **Styling**: Tailwind
 - **API Communication**: Axios/Fetch API
 - **Testing**: Jest/React Testing Library/Cypress
+- **Code Guide**: airbnb / javascript
 
 ## Backend
 - **Language**: Python/Node.js/Go
@@ -110,6 +111,7 @@ It has a steeper learning curve but provides more long-term benefits for complex
 - **Cloud Provider**: AWS/GCP/Azure
 - **Application Proxy**: traefik, frp
 - **Scheduling**: dolphinscheduler
+- **Download Manager**: gopeed
 
 ## Monitoring & Observability
 - **Logging**: ELK Stack/Fluentd
@@ -128,5 +130,13 @@ It has a steeper learning curve but provides more long-term benefits for complex
 - **Synchronous**: REST, GraphQL, gRPC, tonic
 - **Asynchronous**: RabbitMQ/Kafka/NATS
 - **Notification System**: novu
+
+## Other Links
+
+- [Developer Roadmap](https://github.com/kamranahmedse/developer-roadmap) - A set of charts illustrating the paths to follow and technologies to learn to become a developer
+- [Awesome Software Architecture](https://github.com/mehdihadeli/awesome-software-architecture) - A curated list of resources on software architecture, patterns, and principles
+- [Java Design Patterns](https://github.com/iluwatar/java-design-patterns) - Implementation of various design patterns in Java with explanations
+- [Awesome System Design Resources](https://github.com/ashishps1/awesome-system-design-resources) - A collection of resources for learning system design
+- [Awesome Cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets) - Cheatsheets for various programming languages, frameworks, and development tools
 
 ###### tags: `Architecture & Technologies` `Documentation`
