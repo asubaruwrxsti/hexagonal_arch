@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+import os
 
+load_dotenv(dotenv_path="../env")
 Base = declarative_base()
 
 class Database:
@@ -15,10 +18,12 @@ class Database:
         return cls._instance
 
     def _initialize(self):
-        # TODO: Move this to a configuration file
-        SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+        SQLALCHEMY_DATABASE_URL = os.getenv('DATABASE_URL', "sqlite:///./sql_app.db")
+        connect_args = {"check_same_thread": False} if SQLALCHEMY_DATABASE_URL.startswith('sqlite') else {}
+        
         self._engine = create_engine(
-            SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+            SQLALCHEMY_DATABASE_URL, 
+            connect_args=connect_args
         )
         self._SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self._engine)
         Base.metadata.create_all(bind=self._engine)
