@@ -1,8 +1,12 @@
 from fastapi import FastAPI
+from pathlib import Path
+import yaml
+
+import sys
+sys.path.append(str(Path(__file__).parent))
+
 from adapters.incoming.route_adapter import FastAPIRouteAdapter
 from adapters.incoming.middleware_adapter import FastAPIMiddlewareAdapter
-import yaml
-from pathlib import Path
 
 def create_app() -> FastAPI:
     app = FastAPI()
