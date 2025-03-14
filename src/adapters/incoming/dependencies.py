@@ -1,5 +1,3 @@
-from fastapi import Depends
-from sqlalchemy.orm import Session
 from adapters.outgoing.database import Database
 
 def get_db():
