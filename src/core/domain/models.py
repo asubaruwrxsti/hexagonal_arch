@@ -1,5 +1,12 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Table, ForeignKey
+from sqlalchemy.orm import relationship
 from adapters.outgoing.database import Base
+
+# User-Role association table (define this first)
+user_roles = Table('user_roles', Base.metadata,
+    Column('user_id', Integer, ForeignKey('users.id')),
+    Column('role_id', Integer, ForeignKey('roles.id'))
+)
 
 class User(Base):
     __tablename__ = "users"
@@ -19,3 +26,12 @@ class User(Base):
 
     def __repr__(self):
         return str(self)
+    
+    roles = relationship("Role", secondary=user_roles, backref="users")
+
+class Role(Base):
+    __tablename__ = "roles"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+    permissions = Column(String)  # Store as JSON string of permissions

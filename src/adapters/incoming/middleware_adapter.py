@@ -1,21 +1,22 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from core.ports.incoming.middleware_port import MiddlewarePort
 from core.domain.response import APIResponse
 import logging
 import uuid
+from core.config import get_settings
+
+settings = get_settings()
 
 class FastAPIMiddlewareAdapter(MiddlewarePort):
     def register_middleware(self, app: FastAPI) -> None:
         # Configure CORS
-        # TODO: Move this to a configuration file
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=["*"],
-            allow_credentials=True,
-            allow_methods=["*"],
-            allow_headers=["*"],
+            allow_origins=settings.CORS_ORIGINS,
+            allow_credentials=settings.CORS_CREDENTIALS,
+            allow_methods=settings.CORS_METHODS,
+            allow_headers=settings.CORS_HEADERS,
         )
 
         # Add request ID middleware

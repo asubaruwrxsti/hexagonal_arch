@@ -7,6 +7,7 @@ sys.path.append(str(Path(__file__).parent))
 
 from adapters.incoming.route_adapter import FastAPIRouteAdapter
 from adapters.incoming.middleware_adapter import FastAPIMiddlewareAdapter
+from adapters.incoming.auth_middleware import AuthMiddleware
 
 def create_app() -> FastAPI:
     app = FastAPI()
@@ -18,6 +19,9 @@ def create_app() -> FastAPI:
     # Register routes and middleware
     route_adapter.register_routes(app)
     middleware_adapter.register_middleware(app)
+    
+    # Add auth middleware
+    app.add_middleware(AuthMiddleware)
     
     return app
 

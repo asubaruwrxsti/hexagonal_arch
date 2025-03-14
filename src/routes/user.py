@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from http import HTTPStatus
 from sqlalchemy.orm import Session
 
@@ -6,10 +6,12 @@ from core.domain.response import APIResponse
 from core.domain.schemas import UserResponse, UserCreate
 from adapters.incoming.dependencies import get_db
 from adapters.repositories.user_repository import UserRepository
+from core.domain.permissions import Permission, require_permissions
 
 router = APIRouter()
 
 @router.get("/users/{user_id}", response_model=APIResponse[UserResponse])
+@require_permissions([Permission.READ])
 def get_user(user_id: int, db: Session = Depends(get_db)):
     user_repo = UserRepository(session=db)
     user = user_repo.get_by_id(user_id)
@@ -18,6 +20,7 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
     return APIResponse.success(data=user).to_response()
 
 @router.get("/users/")
+@require_permissions([Permission.READ])
 async def read_users(db: Session = Depends(get_db)):
     try:
         user_repo = UserRepository(session=db)
@@ -28,6 +31,7 @@ async def read_users(db: Session = Depends(get_db)):
         return APIResponse.error(str(e)).to_response()
 
 @router.post("/users/", status_code=HTTPStatus.CREATED)
+@require_permissions([Permission.CREATE])
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     user_repo = UserRepository(session=db)
     
