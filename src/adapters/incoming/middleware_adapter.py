@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from core.ports.incoming.middleware_port import MiddlewarePort
+from adapters.incoming.auth_middleware import AuthMiddleware
 from core.domain.response import APIResponse
 import logging
 import uuid
@@ -39,3 +40,9 @@ class FastAPIMiddlewareAdapter(MiddlewarePort):
                 return APIResponse.error(
                     message=str(e)
                 )
+            
+        # Add auth middleware
+        @app.middleware("http")
+        async def auth_middleware(request: Request, call_next):
+            auth_middleware = AuthMiddleware(app)
+            return await auth_middleware.dispatch(request, call_next)
