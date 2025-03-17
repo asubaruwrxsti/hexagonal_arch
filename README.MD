@@ -178,5 +178,6 @@ Tests can be found in tests and the application entry point is main.py.
 - [Java Design Patterns](https://github.com/iluwatar/java-design-patterns) - Implementation of various design patterns in Java with explanations
 - [Awesome System Design Resources](https://github.com/ashishps1/awesome-system-design-resources) - A collection of resources for learning system design
 - [Awesome Cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets) - Cheatsheets for various programming languages, frameworks, and development tools
+- [System Design Primer](https://github.com/donnemartin/system-design-primer) - Design scalable systems
 
 ###### tags: `Architecture & Technologies` `Documentation`
